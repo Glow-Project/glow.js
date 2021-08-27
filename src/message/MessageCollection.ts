@@ -3,7 +3,11 @@ import { User, UserCollection } from "../user";
 import { Message } from "./Message";
 
 export class MessageCollection {
-	constructor(private session: Session) {}
+	uc: UserCollection;
+
+	constructor(private session: Session) {
+		this.uc = new UserCollection(session);
+	}
 
 	async all() {
 		let messages: Array<object> = await this.session.get("/messages");
@@ -17,8 +21,7 @@ export class MessageCollection {
 
 	async fromMe() {
 		let all = await this.all();
-		let uc = new UserCollection(this.session);
-		let me = await uc.me();
+		let me = await this.uc.me();
 
 		return all.filter((message: Message) => message.fromId == me.id);
 	}
@@ -31,10 +34,20 @@ export class MessageCollection {
 
 	async fromOthers() {
 		let all = await this.all();
-		let uc = new UserCollection(this.session);
-		let me = await uc.me();
+		let me = await this.uc.me();
 
 		return all.filter((message: Message) => message.toId == me.id);
+	}
+
+	async fromMeAndUser(user: User) {
+		let all = await this.all();
+		let me = await this.uc.me();
+
+		return all.filter(
+			(message: Message) =>
+				(message.toId == me.id && message.fromId == user.id) ||
+				(message.toId == user.id && message.fromId == me.id)
+		);
 	}
 
 	async latest() {
