@@ -23,6 +23,12 @@ export class MessageCollection {
 		return all.filter((message: Message) => message.fromId == me.id);
 	}
 
+	async fromUser(user: User) {
+		let all = await this.all();
+
+		return all.filter((message: Message) => message.fromId == user.id);
+	}
+
 	async fromOthers() {
 		let all = await this.all();
 		let uc = new UserCollection(this.session);
