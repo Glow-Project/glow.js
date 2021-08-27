@@ -5,7 +5,7 @@ Interact with the GLOW-API
 ## Example
 
 ```ts
-const glow = require("glow");
+const glow = require("glow-wrapper");
 
 async function run() {
 	let session = await glow.Session.login("TestUser", "TestPassword");
@@ -22,4 +22,10 @@ run();
 
 ```
 TestUser
+```
+
+## Installation
+
+```
+$ npm i glow-wrapper
 ```
