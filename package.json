@@ -1,29 +1,33 @@
 {
-	"name": "glow",
-	"version": "1.0.0",
-	"description": "A library to interact with the GLOW-API",
-	"main": "index.js",
-	"scripts": {
-		"build": "tsc",
-		"test": "npm run build && node test/main.test.js"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/Glow-Project/glow.js.git"
-	},
-	"keywords": [
-		"wrapper",
-		"glow-api"
-	],
-	"author": "tch1b0 <jpour3006@gmail.com> (https://johannespour.de/)",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/Glow-Project/glow.js/issues"
-	},
-	"homepage": "https://github.com/Glow-Project/glow.js#readme",
-	"dependencies": {
-		"axios": "^0.21.1",
-		"form-data": "^4.0.0",
-		"typescript": "^4.4.2"
-	}
+  "name": "glow-wrapper",
+  "version": "1.0.0",
+  "description": "A library to interact with the GLOW-API",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "npm run build && node test/main.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Glow-Project/glow.js.git"
+  },
+  "keywords": [
+    "wrapper",
+    "glow-api"
+  ],
+  "author": "tch1b0 <jpour3006@gmail.com> (https://johannespour.de/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Glow-Project/glow.js/issues"
+  },
+  "homepage": "https://github.com/Glow-Project/glow.js#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "form-data": "^4.0.0",
+    "typescript": "^4.4.2"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {}
 }
