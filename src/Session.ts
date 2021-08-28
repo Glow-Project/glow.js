@@ -6,13 +6,14 @@ import { BadRequest, Forbidden, NotFound } from "./utility/errors";
 
 /**
  * The Session object **needs** to be passed to every other **glow collection**
- *
- * @param token The Token of your account
- * @param baseUrl The BaseUrl (leave empty if you want to use official Servers)
  */
 export class Session {
 	requester: AxiosInstance;
 
+	/**
+	 * @param token The Token of your account
+	 * @param baseUrl The BaseUrl (leave empty if you want to use official Servers)
+	 */
 	constructor(token: string, baseUrl: string = defaultBaseUrl) {
 		let config = {
 			baseURL: baseUrl,
@@ -24,12 +25,23 @@ export class Session {
 		this.requester = axios.create(config);
 	}
 
+	/**
+	 *
+	 * @param route The path to the ressource. Has to start with `/`
+	 * @returns The `JSON` response
+	 */
 	async get(route: string) {
 		let response = await this.requester.get(route);
 
 		return Session.parseResponse(response);
 	}
 
+	/**
+	 *
+	 * @param route The path to the ressource. Has to start with `/`
+	 * @param data The Form-data you want to send with your request
+	 * @returns The `JSON` response
+	 */
 	async post(route: string, data: FormData = new FormData()) {
 		let response = await this.requester.post(route, data, {
 			headers: data.getHeaders(),
@@ -38,6 +50,12 @@ export class Session {
 		return Session.parseResponse(response);
 	}
 
+	/**
+	 *
+	 * @param route The path to the ressource. Has to start with `/`
+	 * @param data The Form-data you want to send with your request
+	 * @returns The `JSON` response
+	 */
 	async delete(route: string, data: FormData = new FormData()) {
 		let response = await this.requester.post(route, data, {
 			headers: data.getHeaders(),
@@ -56,6 +74,11 @@ export class Session {
 		return true;
 	}
 
+	/**
+	 *
+	 * @param resp The `AxiosResponse` object of the request
+	 * @returns The `JSON` data
+	 */
 	private static parseResponse(resp: AxiosResponse<any>) {
 		switch (resp.status) {
 			case 200:
