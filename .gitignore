@@ -1,3 +1,4 @@
 dist/
 node_modules/
 test/main.test.js
+package-lock.json
